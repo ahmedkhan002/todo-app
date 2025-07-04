@@ -6,8 +6,8 @@ export const todoLogic = createSlice({
     initialState: {
         value: [],
         activebutton: null,
-        newValue: [],
-        history:[],
+        newValue: '',
+        history: [],
     },
     reducers: {
         add: (state, action) => {
@@ -27,17 +27,17 @@ export const todoLogic = createSlice({
         },
         toggleSelected: (state, action) => {
             const index = action.payload;
-             if (state.activebutton === 'History') {
+            if (state.activebutton === 'History') {
                 const item = state.history[index]
-                if(item){
-                   item.selected = !item.selected;
+                if (item) {
+                    item.selected = !item.selected;
                 }
-             }
-             else{
-            const item = state.value[index];
-            if (item) {
-                item.selected = !item.selected;
             }
+            else {
+                const item = state.value[index];
+                if (item) {
+                    item.selected = !item.selected;
+                }
             }
 
         },
@@ -52,22 +52,21 @@ export const todoLogic = createSlice({
                     break;
 
                 case 'Delete':
-                   const deletedItems = state.value.filter((item) => item.selected)
-                    state.history.push(...deletedItems) 
+                    const deletedItems = state.value.filter((item) => item.selected)
+                    state.history.push(...deletedItems)
                     state.value = state.value.filter((item) => !item.selected)
                     break;
 
                 case 'Edit':
-                    state.value.map((item) => {
-                        if (item.selected) {
-                            state.newValue.push(item.text)
-                        }
-
-                    })
+                    const itemToEdit = state.value.find(item => item.selected);
+                    if (itemToEdit) {
+                        state.newValue = itemToEdit.text;
+                    }
                     break;
-                    case 'History':
-                        state.history = state.history.filter((item) => !item.selected)
-                        
+
+                case 'History':
+                    state.history = state.history.filter((item) => !item.selected)
+
 
                 default:
                     break;
