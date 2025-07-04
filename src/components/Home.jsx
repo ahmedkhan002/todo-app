@@ -35,7 +35,7 @@ const Home = () => {
   }
 
   return (
-    <div className="flex flex-col gap-6 items-center h-screen w-full px-4 pt-4">
+    <div className="flex flex-col gap-6 items-center w-full px-4 pt-4">
       <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-center">
         TaskFlow
       </h1>
@@ -131,7 +131,7 @@ const Home = () => {
 
 
       {isActive !== null &&
-        <div className='relative w-full overflow-hidden gap-5 z-100 h-15 flex justify-center'>
+        <div className='relative w-full overflow-hidden my-2 gap-5 z-100 h-15 flex justify-center'>
           <div className='flex justify-center items-center cursor-pointer border-1 rounded-2xl hover:text-white hover:bg-blue-600 h-[80%] text-blue-600 transition-all w-20 px-5 font-semibold my-2' onClick={handleActionDone}>{isActive === 'History' ? 'Delete' : 'Done'}</div>
           <div className='flex justify-center items-center cursor-pointer border-1 rounded-2xl hover:text-white hover:bg-red-600 h-[80%] text-red-600 transition-all w-20 px-5 font-semibold my-2' onClick={() => dispatch(activebutton(null))}>Cancel</div>
         </div>
