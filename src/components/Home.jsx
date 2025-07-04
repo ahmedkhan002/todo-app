@@ -35,7 +35,7 @@ const Home = () => {
   }
 
   return (
-    <div className="flex flex-col gap-6 items-center w-full px-4 pt-4">
+    <div className="flex flex-col gap-6 items-center w-full my-10 px-4 pt-4">
       <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-center">
         TaskFlow
       </h1>
