@@ -27,19 +27,23 @@ export const todoLogic = createSlice({
         },
         toggleSelected: (state, action) => {
             const index = action.payload;
+
             if (state.activebutton === 'History') {
-                const item = state.history[index]
+                const item = state.history[index];
                 if (item) {
                     item.selected = !item.selected;
                 }
-            }
-            else {
+            } else if (state.activebutton === 'Edit') {
+                // Allow only one item to be selected at a time
+                state.value.forEach((item, i) => {
+                    item.selected = i === index ? !item.selected : false;
+                });
+            } else {
                 const item = state.value[index];
                 if (item) {
                     item.selected = !item.selected;
                 }
             }
-
         },
         handleActions: (state, action) => {
             switch (state.activebutton) {
